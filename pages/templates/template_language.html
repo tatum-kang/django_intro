@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Template language</title>
+</head>
+<body>
+  <h1>Template language</h1>
+  <hr>
+  
+  <h2>1. 반복문</h2>
+  {% comment %} 로직을 작성하는 공간 {% endcomment %}
+  {% for menu in menus %}
+  <p>{{ menu }}</p>
+  {% endfor %}
+  {% comment %} 끝날때 표시를 해줘야함  {% endcomment %}
+  <hr>
+
+{% comment %} 
+ {{ forloop }} django template language 
+ {% endcomment %}
+  {% for menu in menus %}
+    <p>{{ forloop.counter }}. {{ menu }}</p>
+  {% endfor %}
+
+  {% for user in empty_list %}
+    <p>{{ user }}</p>
+  {% empty %}
+    <p>현재 가입 유저 없음</p>
+  {% endfor %}
+
+  <h2>2. 조건문</h2>
+  {% if '짜장면' in menus %}
+    <p>짜장면 있음</p>
+  {% else %}
+    <p>짜장면 없음</p>
+  {% endif %}
+  <hr>
+
+  {% for menu in menus %}
+    <p>{{forloop.counter}} 번째 도는중 ..</p>
+    {% if forloop.first %}
+      <p>첫번째임 {{ menu }}</p>
+    {% else %}
+      <p>첫번째아님 ㅋ{{ menu }}</p>
+    {% endif %}
+  {% endfor %}
+
+  <h2>3. length filter 활용</h2>
+  {% for message in messages %}
+  {% if message|length > 5 %}
+  <p>{{ message }}, 글자가 너무 길어요</p>
+  {% else %}
+  <p> 글자길이 {{ message|length }}</p>
+  {% endif %}
+  {% endfor %}
+
+  <h2>4. lorem ipsum</h2>
+  {% lorem %}
+  <hr>
+  {% lorem 3 w%}
+  <hr>
+  {% lorem 11 p random%}
+
+  <h2>5. 글자 관련 필터(truncate)</h2>
+  {% comment %} 단어 단위로 제한 {% endcomment %}
+  <p>{{ my_sentence|truncatewords:3 }}</p>   
+  {% comment %} 글자 단위로 제한 {% endcomment %}
+  <p>{{ my_sentence|truncatechars:3 }}</p>
+  <p>{{ my_sentence|truncatechars:10 }}</p>
+
+  <h2>6. 글자 관련 필터</h2>
+  <p>{{ 'abc'|length }}</p>
+  <p>{{ 'ABC'|lower }}</p>
+  <p>{{ my_sentence|title }}</p>
+  <p>{{ 'abc def'|capfirst }}</p>
+  <p>{{ menus|random }}</p>
+  <hr>
+
+  <h2>7. 연산</h2>
+  <p>{{ 4|add:6 }}</p>
+  <hr>
+
+  <h2>8. 날짜표현 </h2>
+  <p>{{ datetimenow }}</p>
+  {% now "DATE_FORMAT"%}
+  <br>
+  {% now "DATETIME_FORMAT"%}
+  <br>
+  {% now "SHORT_DATETIME_FORMAT"%}
+  <br>
+  {% now "SHORT_DATE_FORMAT"%}
+  <br>
+  {% now "Y년 m월 d일 (D) h:i"%}
+  <br>
+  {% now "Y" as current_year %}
+  <p>copyright {{ current_year }}</p>
+  {{ datetimenow|date:"DATE_FORMAT"}}
+  <hr>
+
+  <h2>9. 기타</h2>
+  <p>{{ "google.com"|urlize }}</p>
+  <hr>
+
+
+</body>
+</html>

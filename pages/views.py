@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from datetime import datetime
 import random
 
 # Create your views here.
@@ -46,3 +47,37 @@ def times(request, num1, num2):
         'num2': num2,
     }
     return render(request, 'times.html', context)
+
+
+def template_language(request):
+    menus = ['짜장면', '탕수육', '짬뽕', '양장피']
+    my_sentence = 'life is short, you need python'
+    messages = ['apple', 'banana', 'cucumber', 'mango']
+    datetimenow = datetime.now()
+    empty_list = []
+    context = {
+        'menus': menus,
+        'my_sentence': my_sentence,
+        'messages': messages,
+        'empty_list': empty_list,
+        'datetimenow': datetimenow,
+    }
+    return render(request, 'template_language.html', context)
+
+
+def isitbirthday(request):
+    context = {
+        'birthday': datetime(2019,8,16)
+    }
+    return render(request, 'isitbirthday.html', context)
+
+
+def lotto(request):
+    real_lotto = [21, 25, 30, 32, 40, 42]
+    lotto = list(random.sample(range(1,46), 6))
+    lotto.sort() #랜덤으로 뽑은 로또 번호
+    context = {
+        'real_lotto': real_lotto,
+        'lotto': lotto
+    }
+    return render(request, 'lotto.html', context)
