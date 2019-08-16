@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lotto Result</title>
+</head>
+<body>
+  <h1>로또 당첨 결과 확인</h1>
+  {% for number in numbers %}
+    <p>{{ number }}번</p>
+  {% endfor %}
+
+  <h2>로또 당첨 번호</h2>
+  <p>{{ real_lotto }}</p>
+
+  <h2>내 번호</h2>
+  <p>{{ numbers }}</p>
+  {% if cnt == 6 %}
+    <p>1등 당첨</p>
+  {% elif cnt == 5 and bonus == True %}
+    <p>2등 당첨</p>
+  {% elif cnt == 5 %}
+    <p>3등 당첨</p>
+  {% elif cnt == 4 %}
+    <p>4등 당첨</p>
+  {% elif cnt == 3 %}
+    <p>5등 당첨</p>
+  {% else %}
+    <p>꽝</p>
+  {% endif %}
+  
+</body>
+</html>

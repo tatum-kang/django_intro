@@ -81,3 +81,43 @@ def lotto(request):
         'lotto': lotto
     }
     return render(request, 'lotto.html', context)
+
+
+def search(request):
+    return render(request, 'search.html')
+
+
+def result(request):
+
+    query = request.GET.get('query')
+    category = request.GET.get('category')
+    context = {
+        'query': query,
+        'category': category,
+    }
+    return render(request, 'result.html', context)
+    
+
+def lotto_pick(request):
+    return render(request, 'lotto_pick.html')
+
+def lotto_result(request):
+    numbers = list(map(int, request.GET.get('numbers').strip().split()))
+    numbers.sort()
+    real_lotto = [21, 25, 30, 32, 40, 42]
+    bonus_num = 38
+    cnt = 0
+    bonus = False
+    for num in numbers:
+        if num in real_lotto:
+            cnt += 1
+        if num == bonus_num:
+            bonus = True
+
+    context = {
+        'numbers': numbers,
+        'real_lotto': real_lotto,
+        'cnt': cnt,
+        'bonus': bonus
+    }
+    return render(request, 'lotto_result.html', context)
