@@ -21,6 +21,7 @@ from pages import views
 # 정의x 경로 라면 404 not found
 urlpatterns = [
     #path('사용자가 접속하는 경로', )
+    path('static_example/', views.static_example),
     path('lotto_result/', views.lotto_result),
     path('lotto_pick/', views.lotto_pick),
     path('result/', views.result),
