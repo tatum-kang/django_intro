@@ -6,11 +6,11 @@ import random
 # 중요함 ㅋㅋㅋ 특정로직 담당
 
 def index(request):     #첫번째 인자는 반드시 request => 사용자가 보내는 요청에 대한 정보
-    return render(request, 'index.html') #render에 첫번째 인자도 request
+    return render(request, 'pages/index.html') #render에 첫번째 인자도 request
 
 
 def introduce(request):
-    return render(request, 'introduce.html')
+    return render(request, 'pages/introduce.html')
 
 
 # template variable example
@@ -22,7 +22,7 @@ def dinner(request, name):
         'name': name,
     }
     # django template 으로 context 전달
-    return render(request, 'dinner.html', context)
+    return render(request, 'pages/dinner.html', context)
 
 
 def image(request):
@@ -30,14 +30,14 @@ def image(request):
     context = {
         'img': img,
     }
-    return render(request, 'image.html', context)
+    return render(request, 'pages/image.html', context)
 
 
 def greeting(request, name):
     context = {
         'name': name
     }
-    return render(request, 'greeting.html', context)
+    return render(request, 'pages/greeting.html', context)
 
 
 def times(request, num1, num2):
@@ -46,7 +46,7 @@ def times(request, num1, num2):
         'num1': num1,
         'num2': num2,
     }
-    return render(request, 'times.html', context)
+    return render(request, 'pages/times.html', context)
 
 
 def template_language(request):
@@ -62,14 +62,14 @@ def template_language(request):
         'empty_list': empty_list,
         'datetimenow': datetimenow,
     }
-    return render(request, 'template_language.html', context)
+    return render(request, 'pages/template_language.html', context)
 
 
 def isitbirthday(request):
     context = {
         'birthday': datetime(2019,8,16)
     }
-    return render(request, 'isitbirthday.html', context)
+    return render(request, 'pages/isitbirthday.html', context)
 
 
 def lotto(request):
@@ -80,11 +80,11 @@ def lotto(request):
         'real_lotto': real_lotto,
         'lotto': lotto
     }
-    return render(request, 'lotto.html', context)
+    return render(request, 'pages/lotto.html', context)
 
 
 def search(request):
-    return render(request, 'search.html')
+    return render(request, 'pages/search.html')
 
 
 def result(request):
@@ -95,11 +95,11 @@ def result(request):
         'query': query,
         'category': category,
     }
-    return render(request, 'result.html', context)
+    return render(request, 'pages/result.html', context)
     
 
 def lotto_pick(request):
-    return render(request, 'lotto_pick.html')
+    return render(request, 'pages/lotto_pick.html')
 
 def lotto_result(request):
     numbers = list(map(int, request.GET.get('numbers').strip().split()))
@@ -120,17 +120,17 @@ def lotto_result(request):
         'cnt': cnt,
         'bonus': bonus
     }
-    return render(request, 'lotto_result.html', context)
+    return render(request, 'pages/lotto_result.html', context)
 
 def static_example(request):
-    return render(request, 'static_example.html')
+    return render(request, 'pages/static_example.html')
 
 def num_push(request):
-    return render(request, 'num_push.html')
+    return render(request, 'pages/num_push.html')
 
 def num_pull(request):
     num = request.GET.get('num')
     context = {
         'num': num,
     }
-    return render(request, 'num_pull.html', context)
+    return render(request, 'pages/num_pull.html', context)
