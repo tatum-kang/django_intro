@@ -14,27 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from pages import views
+from django.urls import path, include
+# include모듈 사용하여 다른 어플로 보낸다
 # 중요함 ㅋㅋㅋ  사용자가 들어올수 있는 경로 설정
 # 정의x 경로 라면 404 not found
 urlpatterns = [
     #path('사용자가 접속하는 경로', )
-    path('static_example/', views.static_example),
-    path('lotto_result/', views.lotto_result),
-    path('lotto_pick/', views.lotto_pick),
-    path('result/', views.result),
-    path('search/', views.search),
-    path('lotto/', views.lotto),
-    path('isitbirthday/', views.isitbirthday),
-    path('template_language/', views.template_language),
-    path('times/<int:num1>/<int:num2>/', views.times),
-    path('greeting/<str:name>/', views.greeting),
-    path('image/', views.image),
-    path('dinner/<str:name>/', views.dinner),
-    path('introduce/', views.introduce),
-    path('index/', views.index),
+    # include모듈 사용하여 다른 어플로 보낸다
+    path('pages/', include('pages.urls')),
+    path('utilities/', include('utilities.urls')),
     path('admin/', admin.site.urls),
 ]
 
