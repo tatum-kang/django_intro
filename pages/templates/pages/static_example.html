@@ -1,16 +1,12 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Static example</title>
+{% block title %}Static example{% endblock title %}
+{% block link %}
   <link rel="stylesheet" href="{% static 'style_sheets/example.css' %}">
-</head>
-<body>
+{% endblock link %}
+
+{% block content %}
   <h1>Static 파일 실습</h1>
-  <img src="{% static 'images/insang.jpg' %}" alt="insang">
-</body>
-</html>
+  <img src="{% static 'images/pages/insang.jpg' %}" alt="insang">
+{% endblock content %}
